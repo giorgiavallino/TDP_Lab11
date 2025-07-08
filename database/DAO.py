@@ -40,7 +40,6 @@ class DAO():
     def getEdge(colore, anno, prodotto_01, prodotto_02):
         conn = DBConnect.get_connection()
         cursor = conn.cursor(dictionary=True)
-        result = []
         query = """SELECT t3.P1, t3.P2, COUNT(*) AS peso
                 FROM
                 (SELECT t1.Retailer_code, t1.Product_number AS P1, t2.Product_number AS P2, t1.`Date` 
@@ -60,7 +59,9 @@ class DAO():
                 GROUP BY t1.`Date`) t3"""
         cursor.execute(query, (prodotto_01, colore, anno, prodotto_02, colore, anno,))
         row = cursor.fetchone()
-        tuplaArco = (row["P1"], row["P2"], row["peso"])
+        if row is None:
+            return None
+        arco = (row["P1"], row["P2"], row["peso"])
         cursor.close()
         conn.close()
-        return tuplaArco
+        return arco

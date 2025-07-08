@@ -18,7 +18,6 @@ class View(ft.UserControl):
         self.btn_graph = None
         self.txtOut = None
         self.txt_container = None
-
         self._ddnode = None
         self.btn_search = None
         self.txtOut2 = None
