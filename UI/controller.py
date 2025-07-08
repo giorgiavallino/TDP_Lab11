@@ -20,7 +20,7 @@ class Controller:
             self._view._ddcolor.options.append(ft.dropdown.Option(colore))
 
     def handle_graph(self, e):
-        pass
+
 
 
 
